@@ -12,61 +12,67 @@ public class swordsmanWalking : MonoBehaviour
     public float timeBetweenAttack;
     private float timeSinceLastAttack = 0f;
     public Image health;
+    //public Sprite healthImage;
+    //private float hp = 5f;
+    public bool isDamaging = false;
     //public float startingHealthFill = .5f;
     [Header("Walk")]
     public float walkingSpeed;
     [Header("Idle")]
     CharacterController characterController;
     #endregion
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        timeSinceLastAttack = timeSinceLastAttack += Time.deltaTime;
         health.fillAmount = .5f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         walking();
-        
-        if (isAttacking == true)
-        {
-            attacking();
-        }
-
     }
-   
+
     void walking()
     {
         animator.SetInteger("State", 1);
-        //characterController.Move(Vector3.right * walkingSpeed * Time.deltaTime);
+
         if (player.transform.position.x <= -8)
         {
             Debug.Log("Reached destination");
             animator.SetInteger("State", 0);
             isAttacking = true;
+            if (isAttacking == true)
+            {
+                attacking();
+            }
             return;
         }
         else
         {
             characterController.Move(Vector3.left * walkingSpeed * Time.deltaTime);
+            isAttacking = false;
             Debug.Log("Moved");
         }
-        
-        
     }
+
     void attacking()
     {
         animator.SetInteger("State", 0);
-        //if (timeSinceLastAttack >= timeBetweenAttack)
-        //{
-        //    health.fillAmount = health.fillAmount - .1f;
-         //   timeSinceLastAttack = 0f;
-       // }
-            //animator.SetInteger("State", 2);
-            Debug.Log("Attacking");
-        
+
+        timeSinceLastAttack += Time.deltaTime;
+        if (timeSinceLastAttack >= timeBetweenAttack)
+        {
+            //hp--;
+            //Debug.Log(hp);
+            timeSinceLastAttack = 0f;
+            health.fillAmount -= 0.1f;
+            if(health.fillAmount <= 0f)
+            {
+                Debug.Log("Deadscreen");
+            }
+        }
+
+        Debug.Log("Attacking");
     }
-    
 }
