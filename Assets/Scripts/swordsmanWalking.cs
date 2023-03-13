@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class swordsmanWalking : MonoBehaviour
 {
@@ -11,9 +12,9 @@ public class swordsmanWalking : MonoBehaviour
     public bool isAttacking = false;
     public float timeBetweenAttack;
     private float timeSinceLastAttack = 0f;
-    public Image health;
+    private TextMeshProUGUI healthValue;
     //public Sprite healthImage;
-    //private float hp = 5f;
+    public static float hp= 5f;
     public bool isDamaging = false;
     //public float startingHealthFill = .5f;
     [Header("Walk")]
@@ -25,12 +26,14 @@ public class swordsmanWalking : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        health.fillAmount = .5f;
+        healthValue = GameObject.Find("livesAmount").GetComponent<TextMeshProUGUI>();
+
     }
 
     void Update()
     {
         walking();
+        
     }
 
     void walking()
@@ -63,11 +66,13 @@ public class swordsmanWalking : MonoBehaviour
         timeSinceLastAttack += Time.deltaTime;
         if (timeSinceLastAttack >= timeBetweenAttack)
         {
-            //hp--;
-            //Debug.Log(hp);
+            hp--;
+            
+            Debug.Log(hp);
+            healthValue.text = hp.ToString();
             timeSinceLastAttack = 0f;
-            health.fillAmount -= 0.1f;
-            if(health.fillAmount <= 0f)
+            
+            if(hp <= 0f)
             {
                 Debug.Log("Deadscreen");
             }
