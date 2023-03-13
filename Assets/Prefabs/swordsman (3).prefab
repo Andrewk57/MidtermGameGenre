@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7726076611978393783}
   m_Layer: 0
   m_Name: swordsman (3)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   animator: {fileID: 7726076611978393782}
   isAttacking: 0
   timeBetweenAttack: 3
+  cataPrefab: {fileID: 732190564957664640, guid: f846de32f4072a64c83f5441b0cfc7e9, type: 3}
   isDamaging: 0
   walkingSpeed: 1
 --- !u!95 &7726076611978393782

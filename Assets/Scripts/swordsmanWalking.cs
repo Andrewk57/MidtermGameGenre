@@ -13,6 +13,7 @@ public class swordsmanWalking : MonoBehaviour
     public float timeBetweenAttack;
     private float timeSinceLastAttack = 0f;
     private TextMeshProUGUI healthValue;
+    public GameObject cataPrefab;
     //public Sprite healthImage;
     public static float hp= 5f;
     public bool isDamaging = false;
@@ -27,6 +28,7 @@ public class swordsmanWalking : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         healthValue = GameObject.Find("livesAmount").GetComponent<TextMeshProUGUI>();
+        
 
     }
 
@@ -35,15 +37,24 @@ public class swordsmanWalking : MonoBehaviour
         walking();
         
     }
-
+    private void OntriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Tower"))
+        {
+            isAttacking = true;
+            attacking();
+            Destroy(other);
+        }
+    }
     void walking()
     {
         animator.SetInteger("State", 1);
-
-        if (player.transform.position.x <= -8)
+       
+        if (player.transform.position.x <= -8  )
         {
             Debug.Log("Reached destination");
             animator.SetInteger("State", 0);
+            
             isAttacking = true;
             if (isAttacking == true)
             {

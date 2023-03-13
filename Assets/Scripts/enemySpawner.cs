@@ -8,7 +8,7 @@ public class enemySpawner : MonoBehaviour
     public GameObject spawnPoint2;
     public GameObject spawnPoint3;
     public GameObject prefabSword;
-    public GameObject horse;
+    public GameObject prefabHorse;
     // Start is called before the first frame update
     void Start()
     {
