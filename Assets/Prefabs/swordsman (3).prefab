@@ -106,6 +106,10 @@ MonoBehaviour:
   cataPrefab: {fileID: 732190564957664640, guid: f846de32f4072a64c83f5441b0cfc7e9, type: 3}
   isDamaging: 0
   walkingSpeed: 1
+  nextNode: {fileID: 0}
+  controller: {fileID: 7726076611978393783}
+  speed: 2
+  minDistance: 0.1
 --- !u!95 &7726076611978393782
 Animator:
   serializedVersion: 4

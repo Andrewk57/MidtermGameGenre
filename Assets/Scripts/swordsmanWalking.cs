@@ -11,84 +11,66 @@ public class swordsmanWalking : MonoBehaviour
     public Animator animator;
     public bool isAttacking = false;
     public float timeBetweenAttack;
-    private float timeSinceLastAttack = 0f;
+
     private TextMeshProUGUI healthValue;
     public GameObject cataPrefab;
     //public Sprite healthImage;
-    public static float hp= 5f;
+    public static float hp = 5f;
     public bool isDamaging = false;
     //public float startingHealthFill = .5f;
     [Header("Walk")]
     public float walkingSpeed;
     [Header("Idle")]
-    CharacterController characterController;
+
+    //The node that we are currently following. Set it at edit time to determine the first node.
+    public nodeScript nextNode;
+    //A reference to the controller so we can call the "move" function
+    public CharacterController controller;
+    //The speed at which this unit will move towards nextNode
+    public float speed;
+    //The minimum distance the unit must be from nextNode to move to the next one
+    public float minDistance;
     #endregion
 
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+
+        controller = GetComponent<CharacterController>();
         healthValue = GameObject.Find("livesAmount").GetComponent<TextMeshProUGUI>();
-        
+
 
     }
 
     void Update()
     {
-        walking();
-        
-    }
-    private void OntriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Tower"))
-        {
-            isAttacking = true;
-            attacking();
-            Destroy(other);
-        }
-    }
-    void walking()
-    {
-        animator.SetInteger("State", 1);
-       
-        if (player.transform.position.x <= -8  )
-        {
-            Debug.Log("Reached destination");
-            animator.SetInteger("State", 0);
-            
-            isAttacking = true;
-            if (isAttacking == true)
-            {
-                attacking();
-            }
+        healthValue.text = hp.ToString();
+
+        //If there's no next node, this unit will not move
+        if (nextNode == null)
+
+
             return;
-        }
-        else
+
+        Vector3 movement =
+            (nextNode.transform.position - transform.position).normalized
+            * speed
+            * Time.deltaTime;
+
+        //Otherwise, the unit will move in the direction towards its nextNode reference
+        controller.Move(movement);
+
+        //If the distance between this unit and nextNode is less than the minimum distance,
+        //we get a new nextNode from the current one, by "asking" it what its own "next node" is.
+        if (Vector3.Distance(nextNode.transform.position, transform.position) <= minDistance)
         {
-            characterController.Move(Vector3.left * walkingSpeed * Time.deltaTime);
-            isAttacking = false;
-            Debug.Log("Moved");
+            nextNode = nextNode.GetNext();
         }
+
     }
 
-    void attacking()
-    {
-        animator.SetInteger("State", 0);
 
-        timeSinceLastAttack += Time.deltaTime;
-        if (timeSinceLastAttack >= timeBetweenAttack)
-        {
-            hp--;
-            
-            Debug.Log(hp);
-            healthValue.text = hp.ToString();
-            timeSinceLastAttack = 0f;
-            
-            if(hp <= 0f)
-            {
-                Debug.Log("Deadscreen");
-            }
-        }
 
-        Debug.Log("Attacking");
-    }
 }
+
+
+
