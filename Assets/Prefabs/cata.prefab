@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6685104752889926696}
   - component: {fileID: 5118212970149671045}
   - component: {fileID: 5290973441848501119}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: cata
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1049045454, guid: e849db11446126a4386086c88a998111, type: 3}
+  m_Sprite: {fileID: 391863948, guid: e849db11446126a4386086c88a998111, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -90,8 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a29b259d6a96d14596ef2f1e702ab95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  cataDupe: {fileID: 0}
+  CardCataprefab: {fileID: 6685104752889926698}
+  imagePrefab: {fileID: 732190564957664640, guid: f846de32f4072a64c83f5441b0cfc7e9, type: 3}
+  canvas: {fileID: 0}
 --- !u!212 &5290973441848501119
 SpriteRenderer:
   m_ObjectHideFlags: 0

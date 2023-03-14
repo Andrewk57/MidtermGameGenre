@@ -3,42 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class placementScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class placementScript : MonoBehaviour, IpointerDown, IDragHandler, IpointerUp
 {
     public static int money = 100;
-    public GameObject prefab; // The prefab to spawn when the sprite is dropped
-
-    private Vector3 initialPosition;
+    public GameObject CardCataprefab; 
+    public GameObject imagePrefab;
+    public Canvas canvas;
+    
 
     private void Start()
     {
-        initialPosition = transform.position; // Store the initial position of the sprite
+        
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (money >= 100)
-        {
-            this.transform.position = eventData.position;
-        }
+        
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (money >= 100)
-        {
-            this.transform.position = eventData.position;
-        }
+        Instantiate(imagePrefab, canvas.transform);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (money >= 100)
-        {
-            GameObject parentObject = GameObject.Find("CanvasS"); 
-            Instantiate(prefab, transform.position, Quaternion.identity, parentObject.transform);
-            Debug.Log("SpawnedTroop");
-        }
-        this.transform.position = initialPosition;
+        
     }
 }
