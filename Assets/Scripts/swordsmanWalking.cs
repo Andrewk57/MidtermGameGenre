@@ -27,12 +27,12 @@ public class swordsmanWalking : MonoBehaviour
     //A reference to the controller so we can call the "move" function
     public CharacterController controller;
     //The speed at which this unit will move towards nextNode
-    public static float speed = 2f;
+    public static float speed = 4.5f;
     //The minimum distance the unit must be from nextNode to move to the next one
     public float minDistance;
     public GameObject attackPoint;
-    public float horseHP = 4f;
-    public float swordHP = 2f;
+    public float horseHP = 8f;
+    public float swordHP = 4f;
 
     #endregion
 
@@ -41,8 +41,8 @@ public class swordsmanWalking : MonoBehaviour
         controller = GetComponent<CharacterController>();
         healthValue = GameObject.Find("livesAmount").GetComponent<TextMeshProUGUI>();
         nextNode = GameObject.Find("A").GetComponent<nodeScript>();
-        horseHP = 4f;
-        swordHP = 2f;
+        horseHP = 8f;
+        swordHP = 4f;
         Debug.Log(horseHP);
         Debug.Log(swordHP);
         

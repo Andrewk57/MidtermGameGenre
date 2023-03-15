@@ -8,15 +8,19 @@ public class enemySpawner : MonoBehaviour
     public GameObject spawnPoint1;
     public GameObject prefabSword;
     public GameObject prefabHorse;
-    public float spawnInterval = 3f;
-    public int enemiesPerWave = 5;
+    public float spawnInterval = 1f;
+    public int enemiesPerWave = 9;
     public int waves = 2;
     private int enemiesSpawned = 0;
     private int waveNumber = 0;
     public TextMeshProUGUI wave;
+    public GameObject VictoryScreen;
 
     void Start()
     {
+        VictoryScreen.SetActive(false);
+        Time.timeScale = 1f;
+        AudioListener.volume = 1f;
         StartCoroutine(SpawnWave());
         Debug.Log("Wave started");
     }
@@ -37,8 +41,15 @@ public class enemySpawner : MonoBehaviour
         }
         if (waveNumber < waves)
         {
-            yield return new WaitForSeconds(13f);
+            yield return new WaitForSeconds(20f);
             StartCoroutine(SpawnWave());
+        }
+        else
+        {
+            VictoryScreen.SetActive(true);
+            AudioListener.volume = 0f;
+            Time.timeScale = 0f;
+
         }
     }
 }

@@ -6,16 +6,19 @@ using TMPro;
 
 public class placementScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public static int money = 100;
+    public static int money = 50;
     public GameObject prefab; 
     public static TextMeshProUGUI coins;
     private Vector3 initialPosition;
     public static float clickPower = 1f;
+    public static TextMeshProUGUI mult;
 
     private void Start()
     {
         initialPosition = transform.position; 
         coins = GameObject.Find("ccr").GetComponent<TextMeshProUGUI>();
+        mult = GameObject.Find("mult").GetComponent<TextMeshProUGUI>();
+        coins.text = money.ToString();
         
     }
 
@@ -25,7 +28,7 @@ public class placementScript : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             this.transform.position = eventData.position;
         }
-        if (prefab.CompareTag("Cata") && money >= 100)
+        if (prefab.CompareTag("Cata") && money >= 250)
         {
             this.transform.position = eventData.position;
         }
@@ -41,7 +44,7 @@ public class placementScript : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             this.transform.position = eventData.position;
         }
-        if (prefab.CompareTag("Cata") && money >= 100)
+        if (prefab.CompareTag("Cata") && money >= 250)
         {
             this.transform.position = eventData.position;
         }
@@ -62,12 +65,13 @@ public class placementScript : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             coins.text = money.ToString(); 
             Debug.Log("SpawnedTroop");
         }
-        else if (prefab.CompareTag("Cata") && money >= 100)
+        else if (prefab.CompareTag("Cata") && money >= 250)
         {
             GameObject parentObject = GameObject.Find("CanvasS");
             Instantiate(prefab, transform.position, Quaternion.identity, parentObject.transform);
             clickPower *= 4f;
-            money -= 100; 
+            mult.text = clickPower.ToString();
+            money -= 250; 
             coins.text = money.ToString(); 
             Debug.Log("SpawnedTroop");
         }
@@ -76,6 +80,7 @@ public class placementScript : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             GameObject parentObject = GameObject.Find("CanvasS");
             Instantiate(prefab, transform.position, Quaternion.identity, parentObject.transform);
             clickPower *= 2f;
+            mult.text = clickPower.ToString();
             money -= 75; 
             coins.text = money.ToString(); 
             Debug.Log("SpawnedTroop");
