@@ -27,7 +27,7 @@ public class swordsmanWalking : MonoBehaviour
     //A reference to the controller so we can call the "move" function
     public CharacterController controller;
     //The speed at which this unit will move towards nextNode
-    public static float speed = 4.5f;
+    public static float speed = 6f;
     //The minimum distance the unit must be from nextNode to move to the next one
     public float minDistance;
     public GameObject attackPoint;

@@ -9,7 +9,7 @@ public class enemySpawner : MonoBehaviour
     public GameObject prefabSword;
     public GameObject prefabHorse;
     public float spawnInterval = 1f;
-    public int enemiesPerWave = 9;
+    public int enemiesPerWave = 5;
     public int waves = 2;
     private int enemiesSpawned = 0;
     private int waveNumber = 0;
@@ -41,7 +41,7 @@ public class enemySpawner : MonoBehaviour
         }
         if (waveNumber < waves)
         {
-            yield return new WaitForSeconds(20f);
+            yield return new WaitForSeconds(8f);
             StartCoroutine(SpawnWave());
         }
         else
