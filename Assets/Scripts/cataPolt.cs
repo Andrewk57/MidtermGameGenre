@@ -12,6 +12,10 @@ public class cataPolt : MonoBehaviour
     //private float timeSinceLastAttack = 0f;
     public bool isDamaging = false;
     public GameObject swordPrefab;
+    public GameObject cataBallPrefab;
+    public GameObject bulletSpawnPoint;
+    public float bspeed = 5f;
+    public GameObject bulletTarget;
     void Start()
     {
         characterController = GetComponent<CharacterController>();  
@@ -38,5 +42,9 @@ public class cataPolt : MonoBehaviour
     {
         animator.SetInteger("State", 1);
         Debug.Log("Played animation for cata");
+
+        Vector3 direction = (bulletTarget.transform.position - bulletSpawnPoint.transform.position).normalized;
+        var bullet = Instantiate(cataBallPrefab, bulletSpawnPoint.transform.position, Quaternion.identity);
+        bullet.GetComponent<Rigidbody>().velocity = direction * bspeed;
     }
 }

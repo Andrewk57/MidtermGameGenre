@@ -7,6 +7,11 @@ TagManager:
   - Floor
   - Enemy
   - Tower
+  - Cata
+  - Archer
+  - Spike
+  - Horse
+  - Swordsman
   layers:
   - Default
   - TransparentFX

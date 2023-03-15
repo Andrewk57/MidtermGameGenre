@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 5858692900392997540}
   - component: {fileID: 5347681170701699397}
   - component: {fileID: 3784635255471874105}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Tower
+  m_Layer: 0
+  m_Name: Polty
+  m_TagString: Cata
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,16 +32,17 @@ RectTransform:
   m_GameObject: {fileID: 732190564957664640}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 5258858153003918294}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 82, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8842595966493331789
 CanvasRenderer:
@@ -160,7 +161,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732190564957664640}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: adacc6452c6753e46861d5047009e52d, type: 3}
   m_Name: 
@@ -172,6 +173,10 @@ MonoBehaviour:
   timeBetweenAttack: 3
   isDamaging: 0
   swordPrefab: {fileID: 7726076611978393784, guid: 13105ea14a79b534a8b503f2156525b8, type: 3}
+  cataBallPrefab: {fileID: 7607956186027837183, guid: e4b055211d0ab054b860fce63a124391, type: 3}
+  bulletSpawnPoint: {fileID: 7820804820615523471}
+  bspeed: 5
+  bulletTarget: {fileID: 7726076611978393784, guid: 13105ea14a79b534a8b503f2156525b8, type: 3}
 --- !u!65 &5347681170701699397
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -183,7 +188,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.82, y: 0.76, z: 0.2}
+  m_Size: {x: 80.99, y: 76.67, z: 5.07}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &3784635255471874105
 CharacterController:
@@ -203,3 +208,34 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7820804820615523471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5258858153003918294}
+  m_Layer: 0
+  m_Name: shootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5258858153003918294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7820804820615523471}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.64, y: 34.2, z: 2.8}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2431336356090597589}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

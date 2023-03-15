@@ -12,7 +12,7 @@ public class swordsmanWalking : MonoBehaviour
     public bool isAttacking = false;
     public float timeBetweenAttack;
 
-    private TextMeshProUGUI healthValue;
+    public static TextMeshProUGUI healthValue;
     public GameObject cataPrefab;
     //public Sprite healthImage;
     public static float hp = 5f;
@@ -27,48 +27,103 @@ public class swordsmanWalking : MonoBehaviour
     //A reference to the controller so we can call the "move" function
     public CharacterController controller;
     //The speed at which this unit will move towards nextNode
-    public float speed;
+    public static float speed = 2f;
     //The minimum distance the unit must be from nextNode to move to the next one
     public float minDistance;
+    public GameObject attackPoint;
+    public float horseHP = 4f;
+    public float swordHP = 2f;
+
     #endregion
 
     void Start()
     {
-
         controller = GetComponent<CharacterController>();
         healthValue = GameObject.Find("livesAmount").GetComponent<TextMeshProUGUI>();
-
-
+        nextNode = GameObject.Find("A").GetComponent<nodeScript>();
+        horseHP = 4f;
+        swordHP = 2f;
+        Debug.Log(horseHP);
+        Debug.Log(swordHP);
+        
     }
 
     void Update()
     {
-        healthValue.text = hp.ToString();
-
-        //If there's no next node, this unit will not move
-        if (nextNode == null)
-
-
-            return;
-
-        Vector3 movement =
-            (nextNode.transform.position - transform.position).normalized
-            * speed
-            * Time.deltaTime;
-
-        //Otherwise, the unit will move in the direction towards its nextNode reference
-        controller.Move(movement);
-
-        //If the distance between this unit and nextNode is less than the minimum distance,
-        //we get a new nextNode from the current one, by "asking" it what its own "next node" is.
-        if (Vector3.Distance(nextNode.transform.position, transform.position) <= minDistance)
+        if (horseHP<=0f)
         {
-            nextNode = nextNode.GetNext();
+            placementScript.money += 50;
+            placementScript.coins.text = placementScript.money.ToString();
+            Destroy(this.gameObject);
         }
+        if (swordHP<=0f)
+        {
+            placementScript.money += 25;
+            placementScript.coins.text = placementScript.money.ToString();
+            Destroy(this.gameObject);
+        }
+        healthValue.text = hp.ToString();
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit) && hit.collider.gameObject == gameObject)
+            {
+                if (gameObject.transform.CompareTag("Horse"))
+                {
+                    horseHP -= placementScript.clickPower;
+                }
+                else if (gameObject.transform.CompareTag("Swordsman"))
+                {
+                    swordHP -= placementScript.clickPower;
+                }
+                Debug.Log("Clicked on " + this.gameObject.name);
+            }
+        }
+        if (hp<=0f)
+        {
+            Debug.Log("GameOver");
+        }
+
+        if (nextNode == null)
+        {
+            
+        }
+        else
+        {
+            Vector3 movement =
+                (nextNode.transform.position - transform.position).normalized
+                * speed
+                * Time.deltaTime;
+
+            controller.Move(movement);
+
+            if (Vector3.Distance(nextNode.transform.position, transform.position) <= minDistance)
+            {
+                nextNode = nextNode.GetNext();
+            }
+        }
+       
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Finish"))
+        {
+            hp--;
+            
+            healthValue.text = hp.ToString();
+            Debug.Log("Reached end" + hp);
+            
+          
+            Destroy(this.gameObject);
+        }
+        
 
+
+    }
 
 }
 

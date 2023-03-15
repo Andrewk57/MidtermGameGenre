@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 6685104752889926696}
   - component: {fileID: 5118212970149671045}
   - component: {fileID: 5290973441848501119}
+  - component: {fileID: 8275812117351784957}
+  - component: {fileID: -6767350378224457214}
   m_Layer: 6
   m_Name: cata
-  m_TagString: Untagged
+  m_TagString: Cata
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,9 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a29b259d6a96d14596ef2f1e702ab95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardCataprefab: {fileID: 6685104752889926698}
-  imagePrefab: {fileID: 732190564957664640, guid: f846de32f4072a64c83f5441b0cfc7e9, type: 3}
-  canvas: {fileID: 0}
+  prefab: {fileID: 732190564957664640, guid: f846de32f4072a64c83f5441b0cfc7e9, type: 3}
 --- !u!212 &5290973441848501119
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -131,9 +131,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1242871575
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -145,3 +145,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &8275812117351784957
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6685104752889926698}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!143 &-6767350378224457214
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6685104752889926698}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
